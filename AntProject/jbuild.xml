@@ -52,4 +52,31 @@ and open the template in the editor.
     </jar>
 </target>
 
+
+<target name ="copy">
+    <copy todir="${staging.dir}/src/">
+            <fileset dir="${src.dir}" />
+        </copy>
+</target>
+
+ <!-- ================== PMD : static analysis checks on code =================== -->
+    <target name="pmd" depends="main, copy">
+        
+        <property name="pmd.dir" value="/Users/imac/Desktop/pmd-bin-5.3.2/" />
+        <path id="pmd.classpath">
+            <fileset dir="${pmd.dir}\lib"> 
+                <include name="*.jar" /> 
+            </fileset>
+        </path>
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath" />
+
+
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" /> <!-- classpathref="pmd.classpath"/> -->
+        <pmd rulesetfiles="pmdRules.xml" failOnRuleViolation="yes" >
+            <formatter type="html" toFile="pmd_report.html" toConsole="true" />
+            <fileset dir="${staging.dir}/src/">
+                <include name="**/*.java"/>
+            </fileset>
+        </pmd>
+    </target>
 </project>

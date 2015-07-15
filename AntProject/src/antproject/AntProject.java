@@ -9,15 +9,20 @@ package antproject;
  *
  * @author ernie
  */
-public class AntProject {
+import javax.swing.JOptionPane;
 
+
+public class AntProject {
+   
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello World");
-       
+        try{
+        }catch(Exception e){
+        }
     }
     
 }
